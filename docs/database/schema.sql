@@ -1,41 +1,41 @@
-CREATE TABLE categoria (
+CREATE TABLE category (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE cliente (
+CREATE TABLE customer (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
-    telefone VARCHAR(20),
+    phone VARCHAR(20),
     email VARCHAR(150)
 );
 
-CREATE TABLE produto (
+CREATE TABLE product (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
-    descricao VARCHAR(255),
-    preco DECIMAL(10,2) NOT NULL,
-    quantidade_estoque INT NOT NULL,
-    categoria_id BIGINT NOT NULL,
-    CONSTRAINT fk_produto_categoria FOREIGN KEY (categoria_id) REFERENCES categoria(id)
+    name VARCHAR(150) NOT NULL,
+    description VARCHAR(255),
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INT NOT NULL,
+    category_id BIGINT NOT NULL,
+    CONSTRAINT fk_product_category FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
-CREATE TABLE venda (
+CREATE TABLE sale (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id BIGINT NOT NULL,
-    data_hora DATETIME NOT NULL,
-    valor_total DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_venda_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+    customer_id BIGINT NOT NULL,
+    sale_date_time DATETIME NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_sale_customer FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 
-CREATE TABLE item_venda (
+CREATE TABLE sale_item (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    venda_id BIGINT NOT NULL,
-    produto_id BIGINT NOT NULL,
-    quantidade INT NOT NULL,
-    preco_unitario DECIMAL(10,2) NOT NULL,
+    sale_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_item_venda_venda FOREIGN KEY (venda_id) REFERENCES venda(id),
-    CONSTRAINT fk_item_venda_produto FOREIGN KEY (produto_id) REFERENCES produto(id)
+    CONSTRAINT fk_sale_item_sale FOREIGN KEY (sale_id) REFERENCES sale(id),
+    CONSTRAINT fk_sale_item_product FOREIGN KEY (product_id) REFERENCES product(id)
 );

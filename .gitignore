@@ -1,6 +1,8 @@
 # Maven / build
-/target/
-/out/
+target/
+out/
+**/target/
+**/out/
 
 # IntelliJ IDEA
 /.idea/
@@ -13,6 +15,15 @@
 .project
 .classpath
 .settings/
+
+# Frontend
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.*
 
 # OS
 .DS_Store

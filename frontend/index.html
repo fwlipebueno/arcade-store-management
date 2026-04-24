@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arcade Store Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+    <header class="topbar">
+        <div>
+            <strong>Arcade Store</strong>
+            <span>Store management</span>
+        </div>
+        <button id="refreshButton" type="button">Refresh</button>
+    </header>
+
+    <main class="workspace">
+        <section class="summary" aria-label="Summary">
+            <article>
+                <span>Sales</span>
+                <strong id="totalSales">0</strong>
+            </article>
+            <article>
+                <span>Items sold</span>
+                <strong id="totalItems">0</strong>
+            </article>
+            <article>
+                <span>Revenue</span>
+                <strong id="totalRevenue">R$0.00</strong>
+            </article>
+        </section>
+
+        <section class="grid">
+            <div class="panel">
+                <div class="panel-title">
+                    <h1>Customers</h1>
+                </div>
+                <form id="customerForm" class="form">
+                    <input name="name" placeholder="Name" required maxlength="150">
+                    <input name="cpf" placeholder="CPF" required maxlength="14">
+                    <input name="phone" placeholder="Phone" maxlength="20">
+                    <input name="email" placeholder="Email" type="email" maxlength="150">
+                    <button type="submit">Add customer</button>
+                </form>
+                <div id="customersList" class="list"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">
+                    <h1>Categories</h1>
+                </div>
+                <form id="categoryForm" class="form inline">
+                    <input name="name" placeholder="Category name" required maxlength="100">
+                    <button type="submit">Add</button>
+                </form>
+                <div id="categoriesList" class="chips"></div>
+            </div>
+
+            <div class="panel wide">
+                <div class="panel-title">
+                    <h1>Products</h1>
+                </div>
+                <form id="productForm" class="form product-form">
+                    <input name="name" placeholder="Product" required maxlength="150">
+                    <input name="description" placeholder="Description" maxlength="255">
+                    <input name="price" placeholder="Price" type="number" min="0.01" step="0.01" required>
+                    <input name="stockQuantity" placeholder="Stock" type="number" min="0" step="1" required>
+                    <select name="categoryId" required></select>
+                    <button type="submit">Add product</button>
+                </form>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">
+                    <h1>Sale</h1>
+                </div>
+                <form id="saleItemForm" class="form">
+                    <select name="customerId" required></select>
+                    <select name="productId" required></select>
+                    <input name="quantity" placeholder="Quantity" type="number" min="1" step="1" value="1" required>
+                    <button type="submit">Add item</button>
+                </form>
+                <div id="saleItems" class="list compact"></div>
+                <button id="finishSaleButton" class="primary-action" type="button">Complete sale</button>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">
+                    <h1>Latest sales</h1>
+                </div>
+                <div id="salesList" class="list"></div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
