@@ -1,3 +1,10 @@
+<a id="english"></a>
+
+<p align="right">
+  <kbd><a href="#english">English</a></kbd>
+  <kbd><a href="#portuguese">Português</a></kbd>
+</p>
+
 # Arcade Store Management
 Arcade store management system developed for the POO2 course.
 
@@ -186,3 +193,201 @@ The following points still depend on course guidance:
 - final interface format required by the course.
 
 Until then, the base is ready to evolve without rewriting the core system.
+
+---
+
+<a id="portuguese"></a>
+
+<p align="right">
+  <kbd><a href="#english">English</a></kbd>
+  <kbd><a href="#portuguese">Português</a></kbd>
+</p>
+
+# Arcade Store Management
+Sistema de gerenciamento de loja arcade desenvolvido para a disciplina de POO2.
+
+O projeto organiza as operações centrais de uma loja arcade: clientes, categorias, produtos, estoque e vendas. A base foi refatorada para Spring Boot preservando o modelo de classes, os casos de uso e os requisitos já entregues na disciplina.
+
+Os documentos acadêmicos originais foram produzidos em português. O código, a API e a nomenclatura técnica do frontend foram padronizados em inglês para seguir a orientação de boas práticas da disciplina sobre usar um único idioma no projeto.
+
+## Objetivo
+Construir uma aplicação simples, didática e sustentável para:
+
+- cadastrar, consultar, atualizar e remover clientes;
+- cadastrar, consultar, atualizar e remover categorias;
+- cadastrar, consultar, atualizar e remover produtos;
+- controlar entrada e saída de estoque;
+- registrar vendas vinculadas a clientes;
+- calcular itens, subtotais e total da venda;
+- consultar histórico e resumo de vendas.
+
+## Estrutura Do Repositório
+```text
+arcade-store-management/
+  backend/
+    pom.xml
+    src/main/java/br/edu/felipebueno/arcade/
+      api/
+        controller/
+        dto/
+        exception/
+      application/
+        service/
+      config/
+      domain/
+        exception/
+        model/
+        repository/
+      infrastructure/
+        repository/memory/
+    src/test/java/br/edu/felipebueno/arcade/
+  frontend/
+    index.html
+    styles.css
+    app.js
+    README.md
+  docs/
+    database/
+      schema.sql
+    technical-notes.md
+```
+
+## Arquitetura
+O backend usa quatro responsabilidades práticas, sem camadas decorativas:
+
+- `domain`: classes de negócio e contratos de repositório.
+- `application`: regras de casos de uso, como cadastro, estoque e vendas.
+- `api`: controllers REST, DTOs e tratamento de erros HTTP.
+- `infrastructure`: implementação técnica de persistência, atualmente em memória.
+
+O domínio preserva as classes principais do modelo acadêmico:
+
+- `Customer`
+- `Category`
+- `Product`
+- `Sale`
+- `SaleItem`
+- `Inventory`
+
+## Backend
+Tecnologias:
+
+- Java 17
+- Spring Boot 3.5.14
+- Maven
+- Bean Validation
+- JUnit 5
+
+Executar:
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+Testar:
+
+```bash
+cd backend
+mvn test
+```
+
+API base:
+
+```text
+http://localhost:8080/api
+```
+
+Principais rotas:
+
+```text
+GET    /api/customers
+POST   /api/customers
+GET    /api/customers/{id}
+PUT    /api/customers/{id}
+DELETE /api/customers/{id}
+
+GET    /api/categories
+POST   /api/categories
+GET    /api/categories/{id}
+PUT    /api/categories/{id}
+DELETE /api/categories/{id}
+
+GET    /api/products
+POST   /api/products
+GET    /api/products/{id}
+PUT    /api/products/{id}
+DELETE /api/products/{id}
+POST   /api/products/{id}/stock/in
+POST   /api/products/{id}/stock/out
+
+GET    /api/sales
+POST   /api/sales
+GET    /api/sales/{id}
+GET    /api/sales/report
+```
+
+## Frontend
+O frontend inicial está em `frontend/` e usa HTML, CSS e JavaScript puro. Ele funciona como uma interface real para cadastros, consultas e vendas, sem introduzir uma stack maior antes de a disciplina consolidar banco de dados e integração.
+
+Executar a partir da pasta `frontend`:
+
+```bash
+python -m http.server 5500
+```
+
+Acessar:
+
+```text
+http://localhost:5500
+```
+
+## Banco De Dados
+O banco ainda não foi implementado porque essa etapa não foi formalizada em aula. A estrutura, porém, já está preparada:
+
+- os services dependem de contratos de repositório;
+- a implementação atual fica isolada em `infrastructure/repository/memory`;
+- uma futura implementação com banco poderá substituir os repositórios em memória;
+- o fluxo de venda já foi desenhado para se tornar transacional;
+- `docs/database/schema.sql` documenta uma modelagem relacional inicial alinhada ao domínio.
+
+Quando banco de dados for trabalhado na disciplina, o caminho natural será adicionar Spring Data JPA ou JDBC conforme a orientação da professora.
+
+## Decisões Importantes
+### Monorepo
+Backend, frontend e documentação permanecem no mesmo repositório porque o projeto ainda é pequeno, acadêmico e integrado. Separar repositórios agora aumentaria a coordenação sem ganho real.
+
+### Persistência Em Memória
+A persistência em memória mantém o sistema executável antes da etapa de banco de dados. Ela é suficiente para validar regras de negócio e demonstrar os fluxos principais, mas não substitui integridade transacional real.
+
+### Vendas E Estoque
+O registro de venda valida todos os itens antes de reduzir o estoque. Se um produto não tiver estoque suficiente, nenhuma baixa parcial é aplicada.
+
+Clientes e produtos já vinculados a vendas não podem ser removidos pela API. Essa escolha preserva o histórico comercial e prepara o projeto para as restrições de chave estrangeira esperadas em um banco relacional.
+
+### DTOs E Validação
+Controllers recebem DTOs com validação explícita. O domínio também protege suas próprias regras para que dados inválidos não contornem a camada de API no futuro.
+
+### Tratamento De Erros
+Erros de negócio, recursos não encontrados e dados inválidos são tratados de forma centralizada em `ApiExceptionHandler`.
+
+## Evolução
+Próximas etapas previstas:
+
+1. Implementar persistência real conforme o conteúdo da disciplina.
+2. Adicionar transações ao registro de venda.
+3. Melhorar relatórios de vendas.
+4. Evoluir o frontend para uma aplicação com build próprio, se isso se justificar.
+5. Adicionar autenticação e papéis de atendente/gerente se entrarem no escopo do projeto.
+
+## Pontos Que Dependem Das Próximas Aulas
+Ainda dependem de orientação da disciplina:
+
+- escolha final entre JDBC, JPA ou outra abordagem de persistência;
+- mapeamento final das entidades no banco;
+- estratégia de criação ou migração de tabelas;
+- controle transacional real;
+- autenticação, autorização e papéis de usuário;
+- formato final de interface exigido pela disciplina.
+
+Até lá, a base está pronta para evoluir sem reescrever o núcleo do sistema.
