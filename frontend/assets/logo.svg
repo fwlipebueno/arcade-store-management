@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" role="img" aria-label="Arcade Store Management">
+  <rect x="1" y="1" width="178" height="46" rx="10" fill="#121110" stroke="#46413c" stroke-width="2"/>
+  <path d="M18 31 23 14h15l5 17H18Z" fill="#24211f" stroke="#f4efe7" stroke-width="2.4" stroke-linejoin="round"/>
+  <circle cx="29" cy="23" r="2.5" fill="#ff6b55"/>
+  <circle cx="37" cy="23" r="2.5" fill="#43b58f"/>
+  <path d="M27 34h13" stroke="#f2b84b" stroke-width="3" stroke-linecap="round"/>
+  <text x="58" y="22" fill="#f4efe7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Arcade Store</text>
+  <text x="58" y="36" fill="#b9afa4" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="10">Management</text>
+</svg>

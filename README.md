@@ -44,9 +44,15 @@ arcade-store-management/
         repository/memory/
     src/test/java/br/edu/felipebueno/arcade/
   frontend/
+    assets/
+      favicon.svg
+      logo.svg
+    src/
+      api.js
+      app.js
+      ui.js
     index.html
     styles.css
-    app.js
     README.md
   docs/
     database/
@@ -91,7 +97,7 @@ Test:
 
 ```bash
 cd backend
-mvn test
+mvn clean test
 ```
 
 Base API:
@@ -130,7 +136,16 @@ GET    /api/sales/report
 ```
 
 ## Frontend
-The initial frontend is in `frontend/` and uses plain HTML, CSS and JavaScript. It is a real interface for registration, querying and sales, while avoiding a larger stack before the course consolidates database and integration requirements.
+The initial frontend is in `frontend/` and uses plain HTML, CSS and JavaScript. It is a real interface for registration, querying, inventory adjustment and sales, while avoiding a larger stack before the course consolidates database and integration requirements.
+
+The frontend is intentionally small:
+
+- `index.html`: view structure.
+- `styles.css`: visual identity and responsive layout.
+- `assets/`: editable SVG brand assets.
+- `src/api.js`: backend API calls.
+- `src/ui.js`: DOM rendering and visual feedback.
+- `src/app.js`: screen state and user interactions.
 
 Run from the `frontend` folder:
 
@@ -242,9 +257,15 @@ arcade-store-management/
         repository/memory/
     src/test/java/br/edu/felipebueno/arcade/
   frontend/
+    assets/
+      favicon.svg
+      logo.svg
+    src/
+      api.js
+      app.js
+      ui.js
     index.html
     styles.css
-    app.js
     README.md
   docs/
     database/
@@ -289,7 +310,7 @@ Testar:
 
 ```bash
 cd backend
-mvn test
+mvn clean test
 ```
 
 API base:
@@ -328,7 +349,16 @@ GET    /api/sales/report
 ```
 
 ## Frontend
-O frontend inicial está em `frontend/` e usa HTML, CSS e JavaScript puro. Ele funciona como uma interface real para cadastros, consultas e vendas, sem introduzir uma stack maior antes de a disciplina consolidar banco de dados e integração.
+O frontend inicial está em `frontend/` e usa HTML, CSS e JavaScript puro. Ele funciona como uma interface real para cadastros, consultas, ajuste de estoque e vendas, sem introduzir uma stack maior antes de a disciplina consolidar banco de dados e integração.
+
+O frontend permanece propositalmente pequeno:
+
+- `index.html`: estrutura da view.
+- `styles.css`: identidade visual e responsividade.
+- `assets/`: marca em SVG editável.
+- `src/api.js`: chamadas para a API do backend.
+- `src/ui.js`: renderização no DOM e feedback visual.
+- `src/app.js`: estado da tela e interações do usuário.
 
 Executar a partir da pasta `frontend`:
 

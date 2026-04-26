@@ -4,38 +4,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Arcade Store Management</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
     <header class="topbar">
-        <div>
-            <strong>Arcade Store</strong>
-            <span>Store management</span>
+        <div class="brand">
+            <span class="brand-mark">
+                <img src="./assets/favicon.svg" alt="" aria-hidden="true">
+            </span>
+            <div class="brand-copy">
+                <strong>Arcade Store Management</strong>
+                <span>Operational arcade desk</span>
+            </div>
         </div>
-        <button id="refreshButton" type="button">Refresh</button>
+        <div class="topbar-actions">
+            <span id="syncStatus" class="status-pill">Ready</span>
+            <button id="refreshButton" class="ghost-button" type="button">Refresh workspace</button>
+        </div>
     </header>
 
     <main class="workspace">
-        <section class="summary" aria-label="Summary">
-            <article>
-                <span>Sales</span>
-                <strong id="totalSales">0</strong>
-            </article>
-            <article>
-                <span>Items sold</span>
-                <strong id="totalItems">0</strong>
-            </article>
-            <article>
-                <span>Revenue</span>
-                <strong id="totalRevenue">R$0.00</strong>
-            </article>
+        <section class="hero" aria-labelledby="heroTitle">
+            <div class="hero-copy">
+                <span class="eyebrow">Store desk</span>
+                <h1 id="heroTitle">Arcade Store Management</h1>
+                <p>Customers, products, inventory and sales in a single arcade counter.</p>
+            </div>
+            <div class="summary" aria-label="Summary">
+                <article>
+                    <span>Sales</span>
+                    <strong id="totalSales">0</strong>
+                </article>
+                <article>
+                    <span>Items sold</span>
+                    <strong id="totalItems">0</strong>
+                </article>
+                <article>
+                    <span>Revenue</span>
+                    <strong id="totalRevenue">R$ 0,00</strong>
+                </article>
+            </div>
         </section>
 
         <section class="grid">
             <div class="panel">
                 <div class="panel-title">
-                    <h1>Customers</h1>
+                    <div>
+                        <span class="panel-kicker">People</span>
+                        <h1>Customers</h1>
+                    </div>
                 </div>
                 <form id="customerForm" class="form">
                     <input name="name" placeholder="Name" required maxlength="150">
@@ -49,7 +68,10 @@
 
             <div class="panel">
                 <div class="panel-title">
-                    <h1>Categories</h1>
+                    <div>
+                        <span class="panel-kicker">Catalog</span>
+                        <h1>Categories</h1>
+                    </div>
                 </div>
                 <form id="categoryForm" class="form inline">
                     <input name="name" placeholder="Category name" required maxlength="100">
@@ -60,7 +82,10 @@
 
             <div class="panel wide">
                 <div class="panel-title">
-                    <h1>Products</h1>
+                    <div>
+                        <span class="panel-kicker">Inventory floor</span>
+                        <h1>Products</h1>
+                    </div>
                 </div>
                 <form id="productForm" class="form product-form">
                     <input name="name" placeholder="Product" required maxlength="150">
@@ -70,24 +95,15 @@
                     <select name="categoryId" required></select>
                     <button type="submit">Add product</button>
                 </form>
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                        </tr>
-                        </thead>
-                        <tbody id="productsTable"></tbody>
-                    </table>
-                </div>
+                <div id="productsGrid" class="products-grid" aria-live="polite"></div>
             </div>
 
-            <div class="panel">
+            <div class="panel sale-panel">
                 <div class="panel-title">
-                    <h1>Sale</h1>
+                    <div>
+                        <span class="panel-kicker">Checkout</span>
+                        <h1>Sale</h1>
+                    </div>
                 </div>
                 <form id="saleItemForm" class="form">
                     <select name="customerId" required></select>
@@ -96,12 +112,19 @@
                     <button type="submit">Add item</button>
                 </form>
                 <div id="saleItems" class="list compact"></div>
-                <button id="finishSaleButton" class="primary-action" type="button">Complete sale</button>
+                <div class="sale-total">
+                    <span>Current total</span>
+                    <strong id="saleDraftTotal">R$ 0,00</strong>
+                </div>
+                <button id="finishSaleButton" class="primary-action" type="button" disabled>Complete sale</button>
             </div>
 
             <div class="panel">
                 <div class="panel-title">
-                    <h1>Latest sales</h1>
+                    <div>
+                        <span class="panel-kicker">History</span>
+                        <h1>Latest sales</h1>
+                    </div>
                 </div>
                 <div id="salesList" class="list"></div>
             </div>
@@ -110,6 +133,8 @@
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="app.js"></script>
+<script src="./src/api.js" defer></script>
+<script src="./src/ui.js" defer></script>
+<script src="./src/app.js" defer></script>
 </body>
 </html>

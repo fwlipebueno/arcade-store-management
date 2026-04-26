@@ -11,6 +11,22 @@ Initial interface for the Arcade Store Management system.
 
 It uses plain HTML, CSS and JavaScript to keep the project lightweight while the course still evolves database and integration topics. The application consumes the backend API at `http://localhost:8080/api`.
 
+## Structure
+```text
+frontend/
+  assets/
+    favicon.svg
+    logo.svg
+  src/
+    api.js
+    app.js
+    ui.js
+  index.html
+  styles.css
+```
+
+The JavaScript is split by practical responsibility: API access, DOM rendering and user interaction. It does not use a build step, modules or external libraries.
+
 ## Running
 With the backend running, serve this folder with a simple static server. Example:
 
@@ -40,6 +56,22 @@ When a final frontend approach is defined, this folder can evolve into a build-b
 Interface inicial do sistema Arcade Store Management.
 
 Ela usa HTML, CSS e JavaScript puro para manter o projeto leve enquanto a disciplina ainda evolui os pontos de banco de dados e integração. A aplicação consome a API do backend em `http://localhost:8080/api`.
+
+## Estrutura
+```text
+frontend/
+  assets/
+    favicon.svg
+    logo.svg
+  src/
+    api.js
+    app.js
+    ui.js
+  index.html
+  styles.css
+```
+
+O JavaScript foi separado por responsabilidade prática: acesso à API, renderização no DOM e interação do usuário. Não há etapa de build, módulos ou bibliotecas externas.
 
 ## Execução
 Com o backend em execução, sirva esta pasta com um servidor estático simples. Exemplo:

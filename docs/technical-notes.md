@@ -20,6 +20,15 @@ The refactoring preserves the core model already delivered in the course materia
 
 The original requirements, class diagram and use-case diagram were produced in Portuguese. The codebase is standardized in English to follow the good-practice guidance of using a single language across the project.
 
+## MVC Organization
+The project follows MVC as a practical teaching structure:
+
+- View: the `frontend` folder, responsible for screen structure, styling and browser interactions.
+- Controller: REST controllers in `backend/src/main/java/br/edu/felipebueno/arcade/api/controller`, responsible for receiving HTTP requests and returning DTO responses.
+- Model: domain classes, services and repositories in `domain`, `application` and `infrastructure`, responsible for business state, rules and persistence access.
+
+This keeps the presentation layer away from business rules and keeps controllers thin enough to explain during a POO2 presentation.
+
 ## Security And Consistency
 The application validates data in two layers:
 
@@ -36,7 +45,9 @@ Because there is no database yet, sale consistency is protected at the level cur
 - customers and products linked to sales cannot be deleted;
 - the future database implementation should use transactions.
 
-## Future Relational Database
+## Current Persistence And Future Relational Database
+In-memory persistence is intentional at this stage. It matches the current course moment because SQL and database mapping have not been formally covered yet, while still allowing the project to execute real use cases and tests.
+
 The design favors replacing infrastructure without changing use cases:
 
 ```text
@@ -74,6 +85,15 @@ A refatoração preserva o núcleo já entregue nos materiais da disciplina:
 
 Os requisitos, o diagrama de classes e o diagrama de casos de uso originais foram produzidos em português. O código foi padronizado em inglês para seguir a orientação de boas práticas sobre usar um único idioma no projeto.
 
+## Organização MVC
+O projeto segue MVC como uma estrutura didática e prática:
+
+- View: a pasta `frontend`, responsável pela estrutura da tela, estilo e interações no navegador.
+- Controller: os controllers REST em `backend/src/main/java/br/edu/felipebueno/arcade/api/controller`, responsáveis por receber requisições HTTP e retornar DTOs.
+- Model: classes de domínio, services e repositórios em `domain`, `application` e `infrastructure`, responsáveis pelo estado de negócio, regras e acesso à persistência.
+
+Essa separação mantém a camada visual longe das regras de negócio e deixa os controllers enxutos o suficiente para explicar em uma apresentação de POO2.
+
 ## Segurança E Consistência
 A aplicação valida dados em duas camadas:
 
@@ -90,7 +110,9 @@ Como ainda não há banco de dados, a consistência da venda foi protegida no n�
 - clientes e produtos vinculados a vendas não podem ser removidos;
 - a futura implementação com banco deve usar transações.
 
-## Banco Relacional Futuro
+## Persistência Atual E Banco Relacional Futuro
+A persistência em memória é intencional nesta etapa. Ela combina com o momento atual da disciplina porque SQL e mapeamento com banco ainda não foram formalmente trabalhados, mas ainda permite executar casos de uso reais e testes.
+
 O desenho favorece a troca da infraestrutura sem alterar os casos de uso:
 
 ```text
