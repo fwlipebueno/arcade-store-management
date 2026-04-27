@@ -8,7 +8,7 @@
     <link rel="icon" href="./assets/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
     <link rel="preload" href="./assets/hero-arcade-dashboard.webp" as="image">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=checkout-stack">
 </head>
 <body>
 <div class="app">
@@ -61,87 +61,93 @@
         </section>
 
         <section class="grid">
-            <div class="panel products-panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">Inventory floor</span>
-                        <h1>Products</h1>
+            <div class="main-stack">
+                <div class="panel products-panel">
+                    <div class="panel-title">
+                        <div>
+                            <span class="panel-kicker">Inventory floor</span>
+                            <h1>Products</h1>
+                        </div>
+                    </div>
+                    <form id="productForm" class="form product-form">
+                        <input name="name" placeholder="Product" required maxlength="150">
+                        <input name="description" placeholder="Description" maxlength="255">
+                        <input name="price" placeholder="Price" type="number" min="0.01" step="0.01" required>
+                        <input name="stockQuantity" placeholder="Stock" type="number" min="0" step="1" required>
+                        <select name="categoryId" required></select>
+                        <button type="submit">Add product</button>
+                    </form>
+                    <div id="productsGrid" class="products-grid" aria-live="polite"></div>
+                </div>
+
+                <div class="support-grid">
+                    <div class="panel customers-panel">
+                        <div class="panel-title">
+                            <div>
+                                <span class="panel-kicker">People</span>
+                                <h1>Customers</h1>
+                            </div>
+                        </div>
+                        <form id="customerForm" class="form customer-form">
+                            <input name="name" placeholder="Name" required maxlength="150">
+                            <input name="cpf" placeholder="CPF" required maxlength="14">
+                            <input name="phone" placeholder="Phone" maxlength="20">
+                            <input name="email" placeholder="Email" type="email" maxlength="150">
+                            <button type="submit">Add customer</button>
+                        </form>
+                        <div id="customersList" class="list"></div>
+                    </div>
+
+                    <div class="panel catalog-panel">
+                        <div class="panel-title">
+                            <div>
+                                <span class="panel-kicker">Catalog</span>
+                                <h1>Categories</h1>
+                            </div>
+                        </div>
+                        <form id="categoryForm" class="form inline">
+                            <input name="name" placeholder="Category name" required maxlength="100">
+                            <button type="submit">Add</button>
+                        </form>
+                        <div id="categoriesList" class="chips"></div>
                     </div>
                 </div>
-                <form id="productForm" class="form product-form">
-                    <input name="name" placeholder="Product" required maxlength="150">
-                    <input name="description" placeholder="Description" maxlength="255">
-                    <input name="price" placeholder="Price" type="number" min="0.01" step="0.01" required>
-                    <input name="stockQuantity" placeholder="Stock" type="number" min="0" step="1" required>
-                    <select name="categoryId" required></select>
-                    <button type="submit">Add product</button>
-                </form>
-                <div id="productsGrid" class="products-grid" aria-live="polite"></div>
             </div>
 
-            <div class="panel sale-panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">Checkout</span>
-                        <h1>Sale</h1>
+            <aside class="checkout-stack" aria-label="Checkout and sales history">
+                <div class="panel sale-panel">
+                    <div class="panel-title">
+                        <div>
+                            <span class="panel-kicker">Checkout</span>
+                            <h1>Sale</h1>
+                        </div>
+                    </div>
+                    <form id="saleItemForm" class="form sale-form">
+                        <select name="customerId" required></select>
+                        <select name="productId" required></select>
+                        <input name="quantity" placeholder="Quantity" type="number" min="1" step="1" value="1" required>
+                        <button type="submit">Add item</button>
+                    </form>
+                    <div id="saleItems" class="list compact"></div>
+                    <div class="sale-footer">
+                        <div class="sale-total">
+                            <span>Current total</span>
+                            <strong id="saleDraftTotal">$0.00</strong>
+                        </div>
+                        <button id="finishSaleButton" class="primary-action" type="button" disabled>Complete sale</button>
                     </div>
                 </div>
-                <form id="saleItemForm" class="form sale-form">
-                    <select name="customerId" required></select>
-                    <select name="productId" required></select>
-                    <input name="quantity" placeholder="Quantity" type="number" min="1" step="1" value="1" required>
-                    <button type="submit">Add item</button>
-                </form>
-                <div id="saleItems" class="list compact"></div>
-                <div class="sale-footer">
-                    <div class="sale-total">
-                        <span>Current total</span>
-                        <strong id="saleDraftTotal">$0.00</strong>
-                    </div>
-                    <button id="finishSaleButton" class="primary-action" type="button" disabled>Complete sale</button>
-                </div>
-            </div>
 
-            <div class="panel customers-panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">People</span>
-                        <h1>Customers</h1>
+                <div class="panel history-panel">
+                    <div class="panel-title">
+                        <div>
+                            <span class="panel-kicker">History</span>
+                            <h1>Latest sales</h1>
+                        </div>
                     </div>
+                    <div id="salesList" class="list"></div>
                 </div>
-                <form id="customerForm" class="form customer-form">
-                    <input name="name" placeholder="Name" required maxlength="150">
-                    <input name="cpf" placeholder="CPF" required maxlength="14">
-                    <input name="phone" placeholder="Phone" maxlength="20">
-                    <input name="email" placeholder="Email" type="email" maxlength="150">
-                    <button type="submit">Add customer</button>
-                </form>
-                <div id="customersList" class="list"></div>
-            </div>
-
-            <div class="panel catalog-panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">Catalog</span>
-                        <h1>Categories</h1>
-                    </div>
-                </div>
-                <form id="categoryForm" class="form inline">
-                    <input name="name" placeholder="Category name" required maxlength="100">
-                    <button type="submit">Add</button>
-                </form>
-                <div id="categoriesList" class="chips"></div>
-            </div>
-
-            <div class="panel history-panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">History</span>
-                        <h1>Latest sales</h1>
-                    </div>
-                </div>
-                <div id="salesList" class="list"></div>
-            </div>
+            </aside>
         </section>
     </main>
 </div>

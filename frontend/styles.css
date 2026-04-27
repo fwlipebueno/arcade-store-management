@@ -433,10 +433,22 @@ input::placeholder {
 
 .grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.52fr) minmax(390px, 0.78fr);
-    grid-template-areas:
-        "products products sale"
-        "customers catalog history";
+    grid-template-columns: minmax(0, 1fr) 470px;
+    gap: 12px;
+    align-items: start;
+}
+
+.main-stack,
+.checkout-stack {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    min-width: 0;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 0.92fr);
     gap: 12px;
     align-items: start;
 }
@@ -447,7 +459,6 @@ input::placeholder {
 }
 
 .products-panel {
-    grid-area: products;
     background:
         radial-gradient(circle at 85% 12%, rgba(49, 214, 216, 0.09), transparent 26rem),
         linear-gradient(140deg, rgba(49, 214, 216, 0.05), transparent 36%),
@@ -455,7 +466,6 @@ input::placeholder {
 }
 
 .sale-panel {
-    grid-area: sale;
     background:
         linear-gradient(150deg, rgba(243, 90, 69, 0.1), transparent 38%),
         rgba(17, 23, 29, 0.92);
@@ -484,16 +494,14 @@ input::placeholder {
 }
 
 .customers-panel {
-    grid-area: customers;
+    min-height: 0;
 }
 
 .catalog-panel {
-    grid-area: catalog;
     min-height: 0;
 }
 
 .history-panel {
-    grid-area: history;
     min-height: 0;
     background:
         linear-gradient(150deg, rgba(49, 214, 216, 0.07), transparent 38%),
@@ -592,7 +600,7 @@ input::placeholder {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 10px;
 }
 
@@ -817,7 +825,7 @@ input::placeholder {
     }
 }
 
-@media (max-width: 1240px) {
+@media (max-width: 1180px) {
     .hero {
         grid-template-columns: 1fr;
     }
@@ -834,12 +842,10 @@ input::placeholder {
 
     .grid {
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "products"
-            "sale"
-            "customers"
-            "catalog"
-            "history";
+    }
+
+    .support-grid {
+        grid-template-columns: 1fr;
     }
 
     .products-grid {
