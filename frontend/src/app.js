@@ -41,10 +41,11 @@ async function loadAll(showSuccess = false) {
 }
 
 async function submitForm(form, action, successMessage) {
+    const data = ui.readForm(form);
     setFormDisabled(form, true);
 
     try {
-        await action(ui.readForm(form));
+        await action(data);
         ui.resetForm(form);
         await loadAll();
         ui.toast(successMessage);

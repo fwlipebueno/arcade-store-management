@@ -15,8 +15,11 @@ It uses plain HTML, CSS and JavaScript to keep the project lightweight while the
 ```text
 frontend/
   assets/
-    favicon.svg
-    logo.svg
+    app-icon.webp
+    favicon.png
+    apple-touch-icon.png
+    ambient-frame.webp
+    hero-arcade-dashboard.webp
   src/
     api.js
     app.js
@@ -61,8 +64,11 @@ Ela usa HTML, CSS e JavaScript puro para manter o projeto leve enquanto a discip
 ```text
 frontend/
   assets/
-    favicon.svg
-    logo.svg
+    app-icon.webp
+    favicon.png
+    apple-touch-icon.png
+    ambient-frame.webp
+    hero-arcade-dashboard.webp
   src/
     api.js
     app.js

@@ -45,8 +45,11 @@ arcade-store-management/
     src/test/java/br/edu/felipebueno/arcade/
   frontend/
     assets/
-      favicon.svg
-      logo.svg
+      app-icon.webp
+      favicon.png
+      apple-touch-icon.png
+      ambient-frame.webp
+      hero-arcade-dashboard.webp
     src/
       api.js
       app.js
@@ -141,8 +144,8 @@ The initial frontend is in `frontend/` and uses plain HTML, CSS and JavaScript. 
 The frontend is intentionally small:
 
 - `index.html`: view structure.
-- `styles.css`: visual identity and responsive layout.
-- `assets/`: editable SVG brand assets.
+- `styles.css`: visual identity, responsive layout and lightweight motion.
+- `assets/`: optimized raster assets for the app icon, favicon, background texture and hero visual.
 - `src/api.js`: backend API calls.
 - `src/ui.js`: DOM rendering and visual feedback.
 - `src/app.js`: screen state and user interactions.
@@ -258,8 +261,11 @@ arcade-store-management/
     src/test/java/br/edu/felipebueno/arcade/
   frontend/
     assets/
-      favicon.svg
-      logo.svg
+      app-icon.webp
+      favicon.png
+      apple-touch-icon.png
+      ambient-frame.webp
+      hero-arcade-dashboard.webp
     src/
       api.js
       app.js
@@ -355,7 +361,7 @@ O frontend permanece propositalmente pequeno:
 
 - `index.html`: estrutura da view.
 - `styles.css`: identidade visual e responsividade.
-- `assets/`: marca em SVG editável.
+- `assets/`: assets rasterizados otimizados para ícone, favicon, textura de fundo e visual hero.
 - `src/api.js`: chamadas para a API do backend.
 - `src/ui.js`: renderização no DOM e feedback visual.
 - `src/app.js`: estado da tela e interações do usuário.

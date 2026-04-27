@@ -1,7 +1,7 @@
 const ArcadeUi = (() => {
-    const money = new Intl.NumberFormat("pt-BR", {
+    const money = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "BRL"
+        currency: "USD"
     });
 
     const dateTime = new Intl.DateTimeFormat("en-US", {

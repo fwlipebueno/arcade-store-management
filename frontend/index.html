@@ -3,16 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071014">
     <title>Arcade Store Management</title>
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./assets/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    <link rel="preload" href="./assets/hero-arcade-dashboard.webp" as="image">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="app">
     <header class="topbar">
-        <div class="brand">
+        <div class="brand" aria-label="Arcade Store Management">
             <span class="brand-mark">
-                <img src="./assets/favicon.svg" alt="" aria-hidden="true">
+                <img src="./assets/app-icon.webp" alt="" aria-hidden="true">
             </span>
             <div class="brand-copy">
                 <strong>Arcade Store Management</strong>
@@ -31,56 +34,34 @@
                 <span class="eyebrow">Store desk</span>
                 <h1 id="heroTitle">Arcade Store Management</h1>
                 <p>Customers, products, inventory and sales in a single arcade counter.</p>
+
+                <div class="summary" aria-label="Summary">
+                    <article>
+                        <span>Sales</span>
+                        <strong id="totalSales">0</strong>
+                    </article>
+                    <article>
+                        <span>Items sold</span>
+                        <strong id="totalItems">0</strong>
+                    </article>
+                    <article>
+                        <span>Revenue</span>
+                        <strong id="totalRevenue">$0.00</strong>
+                    </article>
+                </div>
             </div>
-            <div class="summary" aria-label="Summary">
-                <article>
-                    <span>Sales</span>
-                    <strong id="totalSales">0</strong>
-                </article>
-                <article>
-                    <span>Items sold</span>
-                    <strong id="totalItems">0</strong>
-                </article>
-                <article>
-                    <span>Revenue</span>
-                    <strong id="totalRevenue">R$ 0,00</strong>
-                </article>
+
+            <div class="hero-media" aria-label="Arcade operation dashboard concept">
+                <img src="./assets/hero-arcade-dashboard.webp" alt="3D arcade cabinet with floating inventory and sales dashboard panels">
+                <div class="hero-signal" aria-hidden="true">
+                    <span>API workspace</span>
+                    <strong>online</strong>
+                </div>
             </div>
         </section>
 
         <section class="grid">
-            <div class="panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">People</span>
-                        <h1>Customers</h1>
-                    </div>
-                </div>
-                <form id="customerForm" class="form">
-                    <input name="name" placeholder="Name" required maxlength="150">
-                    <input name="cpf" placeholder="CPF" required maxlength="14">
-                    <input name="phone" placeholder="Phone" maxlength="20">
-                    <input name="email" placeholder="Email" type="email" maxlength="150">
-                    <button type="submit">Add customer</button>
-                </form>
-                <div id="customersList" class="list"></div>
-            </div>
-
-            <div class="panel">
-                <div class="panel-title">
-                    <div>
-                        <span class="panel-kicker">Catalog</span>
-                        <h1>Categories</h1>
-                    </div>
-                </div>
-                <form id="categoryForm" class="form inline">
-                    <input name="name" placeholder="Category name" required maxlength="100">
-                    <button type="submit">Add</button>
-                </form>
-                <div id="categoriesList" class="chips"></div>
-            </div>
-
-            <div class="panel wide">
+            <div class="panel products-panel">
                 <div class="panel-title">
                     <div>
                         <span class="panel-kicker">Inventory floor</span>
@@ -105,21 +86,54 @@
                         <h1>Sale</h1>
                     </div>
                 </div>
-                <form id="saleItemForm" class="form">
+                <form id="saleItemForm" class="form sale-form">
                     <select name="customerId" required></select>
                     <select name="productId" required></select>
                     <input name="quantity" placeholder="Quantity" type="number" min="1" step="1" value="1" required>
                     <button type="submit">Add item</button>
                 </form>
                 <div id="saleItems" class="list compact"></div>
-                <div class="sale-total">
-                    <span>Current total</span>
-                    <strong id="saleDraftTotal">R$ 0,00</strong>
+                <div class="sale-footer">
+                    <div class="sale-total">
+                        <span>Current total</span>
+                        <strong id="saleDraftTotal">$0.00</strong>
+                    </div>
+                    <button id="finishSaleButton" class="primary-action" type="button" disabled>Complete sale</button>
                 </div>
-                <button id="finishSaleButton" class="primary-action" type="button" disabled>Complete sale</button>
             </div>
 
-            <div class="panel">
+            <div class="panel customers-panel">
+                <div class="panel-title">
+                    <div>
+                        <span class="panel-kicker">People</span>
+                        <h1>Customers</h1>
+                    </div>
+                </div>
+                <form id="customerForm" class="form customer-form">
+                    <input name="name" placeholder="Name" required maxlength="150">
+                    <input name="cpf" placeholder="CPF" required maxlength="14">
+                    <input name="phone" placeholder="Phone" maxlength="20">
+                    <input name="email" placeholder="Email" type="email" maxlength="150">
+                    <button type="submit">Add customer</button>
+                </form>
+                <div id="customersList" class="list"></div>
+            </div>
+
+            <div class="panel catalog-panel">
+                <div class="panel-title">
+                    <div>
+                        <span class="panel-kicker">Catalog</span>
+                        <h1>Categories</h1>
+                    </div>
+                </div>
+                <form id="categoryForm" class="form inline">
+                    <input name="name" placeholder="Category name" required maxlength="100">
+                    <button type="submit">Add</button>
+                </form>
+                <div id="categoriesList" class="chips"></div>
+            </div>
+
+            <div class="panel history-panel">
                 <div class="panel-title">
                     <div>
                         <span class="panel-kicker">History</span>
